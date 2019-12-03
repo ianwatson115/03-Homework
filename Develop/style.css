@@ -1,34 +1,65 @@
+body {
+    background-color: dimgray;
+}
+
 .container {
     margin-top: 15rem;
     margin-bottom: 10px;
     padding: 20px;
-    background-color: lightgray;
+    background-color: white;
     margin-left: 15rem;
     margin-right: 15rem;
 }
 
 .content {
-    
+
 }
 
 .header {
     margin-top: 1rem;
     text-align: center;
     font-size: 32px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial;
     color: dimgray;
 }
 
 .second-header {
-    
-    margin-right: 40rem;
-    text-align: center;
-    font-size: 24px;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    padding-bottom: 3.5rem;
+    font-size: 30px;
     font-family: 'Times New Roman', Times, serif;
     color: dimgray;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial;
+    border-bottom: 2px solid slategray;
 }
 
 #password {
     margin-left: 5rem;
-    margin-right: auto;
+    margin-right: 5rem;
+    width: 80%;
+    height: 80px;
+    text-align: center;
+    border: 2px dotted slategray;
+}
+
+#generate {
+    padding: 20px;
+    margin-left: 5rem;
+    background-color: firebrick;
+    color: white;
+    font-size: 22px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial;
+    border: white;
+    border-radius: 12px;
+}
+
+#copy {
+    padding: 20px;
+    background-color: slategray;
+    color: white;
+    font-size: 22px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial;
+    border: white;
+    border-radius: 12px;
 }
