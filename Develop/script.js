@@ -24,13 +24,21 @@ function generate() {
     
     for(var i = 0, n = charset.length; i < passLength; i++){
         for(var j = 0, m = special.length; j < askChars.length; j++){
-            charset += special.charAt(Math.floor(Math.random()*m));
+            specChar += special.charAt(Math.floor(Math.random()*m));
         }
-        password += charset.charAt(Math.floor(Math.random()*n));
+        password += charset.charAt(Math.floor(Math.random()*n)) + specChar;
     }
     return password;
+    function populate() {
+        var populate = document.password.value;
+        populate = document.getElementById("#password");
+    }
 }
 
-
+function copy() {
+    var copyText = populate;
+    return copyText;
+}
 
 generate.addEventListener("click", generate());
+copy.addEventListener("click", copy());
