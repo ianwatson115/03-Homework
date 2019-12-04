@@ -1,21 +1,26 @@
-var generate = document.getElementById("#generate");
-var copy = document.getElementById("#copy")
+var generate = document.getElementById("generate");
+console.log(generate);
+var copy = document.getElementById("copy")
 var askLength = prompt("How long do you want your password to be?(enter a number from 8 to 128)"); 
 var length = 0;
 
 
-if (askLength.parseInt < 8 || askLength.parseInt > 128){
-    alert("You have entered an invalid number, please reload and try again!");
-} else {
+
+if (parseInt(askLength) >= 8 && parseInt(askLength) <= 128) {
     var askChars = prompt("Enter the special characters you want to include within your password");
-    if (askChars.length > askLength.parseInt){
+    console.log(askLength);
+    console.log(askChars);
+    if (askChars.length > parseInt(askLength)){
         alert("You have entered an invalid amount of characters, please reload and try again!");
     } 
+} else {
+    alert("You have entered an invalid number, please reload and try again!");
 }
 
-function generate() {
+function generate_() {
     //set the password length
-    var passLength = askLength.parseInt();
+    var passLength = parseInt(askLength);
+    console.log(passLength);
     //characters in password
     var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     var password = "";
@@ -24,21 +29,25 @@ function generate() {
     
     for(var i = 0, n = charset.length; i < passLength; i++){
         for(var j = 0, m = special.length; j < askChars.length; j++){
-            specChar += special.charAt(Math.floor(Math.random()*m));
+            specChar += special*(Math.floor(Math.random()*m));
         }
         password += charset.charAt(Math.floor(Math.random()*n)) + specChar;
+        console.log(password);
     }
-    return password;
-    function populate() {
-        var populate = document.password.value;
-        populate = document.getElementById("#password");
-    }
+    return document.getElementById("password").value = password;
+        
 }
 
 function copy() {
-    var copyText = populate;
-    return copyText;
+    var copyText = document.getElementById("password");
+
+    /* Select the text field */
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+  
+    /* Copy the text inside the text field */
+    document.execCommand("copy");
 }
 
-generate.addEventListener("click", generate());
-copy.addEventListener("click", copy());
+document.getElementById("generate").addEventListener("click", generate_());
+document.getElementById("copy").addEventListener("click", copy());

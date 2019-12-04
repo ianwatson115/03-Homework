@@ -9,11 +9,12 @@ body {
     background-color: white;
     margin-left: 15rem;
     margin-right: 15rem;
+    border-radius: 12px;
 }
 
-.content {
+/* .content {
 
-}
+} */
 
 .header {
     margin-top: 1rem;
