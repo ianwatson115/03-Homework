@@ -17,21 +17,27 @@
 
       <h2 class = "second-header"><b>Generate a Password</b></h2>
       <div class="control">
-          <input type="checkbox" id="lowercase">
-          <label class="check-label" for="lowercase"><span class="checkbox">Use Lowercase Letters</span></label>
+          <div class="setting">
+            <label>Password length</label>
+            <input class="checkbox" type="number" id="length" min='8' max='128'/>
+          </div>
+          <div class="setting">
+            <label>Include uppercase letters</label> 
+            <input class="checkbox" type="checkbox" id="uppercase" unchecked />
+          </div>
+          <div class="setting">
+            <label>Include lowercase letters</label> 
+            <input class="checkbox" type="checkbox" id="lowercase" unchecked />
+          </div>
+          <div class="setting">
+            <label>Include numbers</label> 
+            <input class="checkbox" type="checkbox" id="numbers" unchecked />
+          </div>
+          <div class="setting">
+            <label>Include symbols</label> 
+            <input class="checkbox" type="checkbox" id="special" unchecked />
         </div>
-        <div class="control">
-          <input type="checkbox" id="uppercase">
-          <label class="check-label" for="uppercase"><span class="checkbox">Use Uppercase Letters</span></label>
-        </div>
-        <div class="control">
-          <input type="checkbox" id="numbers">
-          <label class="check-label" for="numbers"><span class="checkbox">Use Numbers</span></label>
-        </div>
-        <div class="control">
-          <input type="checkbox" id="special">
-          <label class="check-label" for="special"><span class="checkbox">Use Special Characters</span></label>
-      </div>
+      </div> 
       <textarea
         readonly
         id="password"
