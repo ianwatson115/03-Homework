@@ -80,3 +80,10 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+@media screen and (max-width: 816px) {
+    #password {
+        width: 50%;
+        font-size: 14px;
+    }
+}
