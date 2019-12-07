@@ -10,87 +10,98 @@ var numbersEl = document.getElementById("numbers");
 var specialEl = document.getElementById("special");
 
 //arrays of strings
-var special = ["!", "#", "$", "%", "&", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "^", "_", "`", "{", "}", "~", "\\"];
+var specArray = ["!", "#", "$", "%", "&", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "^", "_", "`", "{", "}", "~", "\\"];
 var smallCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var bigCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+var numArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+
+//object of elements
+const func = {
+    lower: getRandomLower,
+    upper: getRandomUpper,
+    numbers: getRandomNumber,
+    special: getRandomSpecial
+}
 
 console.log(lengthEl);
-console.log(special.length);
+console.log(specArray.length);
 console.log(getRandomLower());
 console.log(getRandomUpper());
 console.log(getRandomNumber());
-console.log(getRandomSymbol());
+console.log(getRandomSpecial());
 
-// function generatePassword() {
-    // var askLength = prompt("How long do you want your password to be?(enter a number from 8 to 128)"); 
-    // if (parseInt(askLength) >= 8 && parseInt(askLength) <= 128) {
-    //     var askChars = prompt("Select what you would like to include in your password: ");
-    //     if (parseInt(askChars) > 4 || parseInt(askChars) < 1 ){
-    //         alert("You have entered an invalid amount of characters, please reload and try again!");
-    //     } else if (parseInt(askChars) >= 1 && parseInt(askChars) <= 4) {
-    // }
-    //     console.log(askLength);
-    //     console.log(askChars);
-    // } else {
-    //     alert("You have entered an invalid number, please reload and try again!");
-    // }
-    if (parseInt(length) >= 8 && parseInt(length) <= 128) {
-        console.log(length);
-        generator();
-        password();
-    } else {
-            // alert("You have entered an invalid number, please reload and try again!");
+generateEl.addEventListener("click", function (){
+    var length = +lengthEl.value;
+    var ifLower = lowerCaseEl.checked;
+    var ifUpper = upperCaseEl.checked;
+    var ifNumbers = numbersEl.checked;
+    var ifSpecial = specialEl.checked;
+
+    console.log(ifUpper);
+    console.log(ifLower);
+    console.log(ifNumbers);
+    console.log(ifSpecial);
+
+    passwordEl.innerText = generatePassword(ifUpper, ifLower, ifNumbers, ifSpecial, length);
+    
+})
+
+function generatePassword(upper, lower, numbers, special, length){
+    var genPassword = "";
+    //need a way to filter out the unchecked boxes
+    var typeCount = lower + upper + numbers + special;
+    console.log(typeCount);
+
+    //filtering through the checked boxes
+    var typeArr = [{upper}, {lower}, {numbers}, {special}].filter(item => Object.values(item)[0]);
+    console.log(typeArr);
+
+    //checking if none of the boxes are checked
+    if (typeCount === 0) {
+        return "";
+    } 
+
+    //
+    for (var i = 0; i < length; i+=typeCount) {
+        typeArr.forEach(type => {
+            var funcName = Object.keys(type)[0];
+            // console.log(funcName);
+
+            genPassword += func[funcName]();
+            
+        })
     }
+
+    var finalPassword = genPassword.slice(0, length);
+
+    return finalPassword;
+}
 
     
-    function getRandomLower() {
-        return smallCase[Math.floor(Math.random() * 26)];
-    }
-
-    function getRandomUpper() {
-        return bigCase[Math.floor(Math.random() * 26)];
-    }
-
-    function getRandomNumber() {
-        return numbers[Math.floor(Math.random() * 10)];
-    }
-
-    function getRandomSymbol() { 
-        return special[Math.floor(Math.random() * 27)];
-    }
-
-
-    
-    
-    
-    //set the password length
-    function password(){
-        var passLength = parseInt(length);
-        console.log(passLength);
-        //characters in password
-        var password = "";
-        var specChar = "";
-        
-        for(var i = 0, n = charset.length; i < passLength; i++){
-            for(var j = 0, m = special.length; j < askChars.length; j++){
-                specChar += special*(Math.floor(Math.random()*m));
-            }
-            password += charset.charAt(Math.floor(Math.random()*n)) + specChar;
-            console.log(password);
-        }
-        return document.getElementById("password").textContent = password;
-    }
-
-// }
-
-function copy() {
-    var copyText = document.getElementById("password").textContent;
-
+function getRandomLower() {
+    return smallCase[Math.floor(Math.random() * 26)];
+}
+function getRandomUpper() {
+    return bigCase[Math.floor(Math.random() * 26)];
+}
+function getRandomNumber() {
+    return numArray[Math.floor(Math.random() * 10)];
+}
+function getRandomSpecial() { 
+    return specArray[Math.floor(Math.random() * 27)];
+}
+//copy password
+copyEl.addEventListener("click", function () {
+    /* Get the text field */
+    var copyText = document.getElementById("password");
+  
     /* Select the text field */
     copyText.select();
     copyText.setSelectionRange(0, 99999); /*For mobile devices*/
   
     /* Copy the text inside the text field */
     document.execCommand("copy");
-}
+  
+    /* Alert the copied text */
+    alert("Copied the text to the clipboard!");
+});
