@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Password Generator</title>
+    <link  rel="stylesheet" type="text/css" href="./style.css">
+  </head>
+  <body>
+
+    <div class="container">
+    
+      <header>
+        <h1 class="header">Password Generator</h1>
+      </header>
+
+      <h2 class = "second-header"><b>Generate a Password</b></h2>
+      <div class="control">
+          <div class="setting">
+            <label>Password length</label>
+            <input class="checkbox" type="number" id="length" min='8' max='128' value="8"/>
+          </div>
+          <div class="setting">
+            <label>Include uppercase letters</label> 
+            <input class="checkbox" type="checkbox" id="uppercase" checked />
+          </div>
+          <div class="setting">
+            <label>Include lowercase letters</label> 
+            <input class="checkbox" type="checkbox" id="lowercase" checked />
+          </div>
+          <div class="setting">
+            <label>Include numbers</label> 
+            <input class="checkbox" type="checkbox" id="numbers" checked />
+          </div>
+          <div class="setting">
+            <label>Include symbols</label> 
+            <input class="checkbox" type="checkbox" id="special" checked />
+          </div>
+      </div> 
+      <textarea
+        readonly
+        id="password"
+        placeholder="Your Secure Password"
+        aria-label="Generated Password"
+      ></textarea>
+      <button id="generate">Generate Password</button>
+      <button id="copy">
+        Copy to Clipboard
+      </button>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
